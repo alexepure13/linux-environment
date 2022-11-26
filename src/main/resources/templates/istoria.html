@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/slider.css" />
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/login_style_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_centered_name.css}">
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+      rel="stylesheet"
+    />
+    <title>Istoria</title>
+  </head>
+
+  <body>
+  <!--Navigatie-->
+  <nav class="navbar navbar-dark navbar-expand-md py-3" style="background-color: #1e222b;">
+    <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-6"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-6">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index">Acasă</a></li>
+          <li class="nav-item"><a class="nav-link" href="distributii">Distribuții</a></li>
+          <li class="nav-item"><a class="nav-link" href="wiki">Wiki</a></li>
+          <li class="nav-item"><a class="nav-link active" href="istoria">Istoria</a></li>
+          <li class="nav-item"><a class="nav-link" href="chat-login">Conversație live</a></li>
+          <li class="nav-item"><a class="nav-link" href="despre">Despre</a></li>
+          <li sec:authorize="hasAuthority('ADMIN_VIEW')" class="nav-item"><a class="nav-link" style="color: red;" href="admin">Panou de administrare</a></li>
+        </ul>
+      </div>
+      <div class="d-none d-md-block"><a class="btn btn-primary" style="margin-right: 10px;" role="button" href="profile">Profilul meu</a><a class="btn btn-light" role="button" href="logout">Delogare</a></div>
+    </div>
+  </nav>
+
+    <div class="element" style="margin-bottom: 50px">
+      <div class="subtitle">
+        <h1 class="title-gradient5">
+          &#10094;&nbsp;Istoria Linux&nbsp;&#10095;
+        </h1>
+      </div>
+    </div>
+
+    <!--Istoria-->
+
+    <h1 style="text-align: center">Cum a început totul??</h1>
+    <p class="dist-lr-text" style="margin: 30px 30px 0px 30px">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dezvoltarea sistemului a fost
+      începută de către inginerul finlandez Linus Torvalds, care inițial dorea
+      să obțină un sistem similar cu Minix, derivat din Unix, dar fără
+      limitările acestuia. Torvalds a scris un kernel care să lucreze pe
+      platformele AT-386 și 484 având la baza conceptele din cartea Operating
+      System a lui Andrew Tanenbaum.
+    </p>
+
+    <div class="auto-slider-content">
+      <div class="auto-slider-v2">
+        <div id="slider">
+          <figure>
+            <img src="img/history-1.jpg" alt="Image" />
+            <img src="img/history-2.jpg" alt="Image" />
+            <img src="img/history-3.jpg" alt="Image" />
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <p class="dist-lr-text" style="margin: 30px 30px 0px 30px">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dezvoltarea sistemului a fost
+      &icirc;nceput&#259; de c&#259;tre inginerul finlandez Linus Torvalds, care
+      ini&#539;ial dorea s&#259; ob&#539;in&#259; un sistem similar cu Minix,
+      derivat din Unix, dar f&#259;r&#259; limit&#259;rile acestuia. Torvalds a
+      scris un kernel care s&#259; lucreze pe platformele AT-386 &#537;i 484
+      av&acirc;nd la baza conceptele din cartea Operating System a lui Andrew
+      Tanenbaum.
+    </p>
+
+    <p class="dist-lr-text" style="margin: 30px 30px 0px 30px">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pe 25 august 1991, <b>Linus Torvalds</b>
+      anun&#539;&#259; ca lucreaz&#259; la un sistem de operare gratuit, prin
+      intermediul unui mesaj c&#259;tre comp.os.minix Usenet, grupurile de
+      discu&#539;ii Minix:
+    </p>
+
+<!--
+    <p class="dist-lr-text" style="margin: 30px 30px 0px 30px">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&laquo;De la: Linus Benedict Torvalds
+      Newsgroup: comp.os.minix Subiect: Ce a&#539;i dori s&#259; vede&#539;i cel
+      mai mult &icirc;n minix? Sumar: mic sondaj pentru noul meu sistem de
+      operare. ID-Mesaj:<> Data: 25 Aug 91 20:57:08 GMT Organiza&#539;ie:
+      Universitatea din Helsinki
+    </p>
+-->
+
+    <p class="dist-lr-text" style="margin: 30px 30px 0px 30px">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Salut&#259;ri tuturor celor care
+      folosesc Minix. Construiesc un sistem de operare (gratuit) (doar un hobby,
+      nu o s&#259; fie la fel de mare &#537;i profesionist ca GNU) pentru clone
+      AT 386 (486). Lucrez la el din aprilie &#537;i e aproape gata. A&#537;
+      vrea s&#259; primesc feed-back cu lucrurile care v&#259; plac/nu plac
+      &icirc;n Minix, deoarece sistemul meu de operare se aseam&#259;n&#259;
+      &icirc;ntr-o oarecare m&#259;sur&#259; cu Minix (aceea&#537;i
+      structur&#259; a sistemului de fi&#537;iere (datorit&#259; unor
+      ra&#539;iuni practice) printre altele). Am portat bash (1.08) &#537;i gcc
+      (1.40), &#537;i lucrurile par s&#259; mearg&#259;. Asta
+      &icirc;nseamn&#259; c&#259; o s&#259; ob&#539;in ceva practic &icirc;n
+      c&acirc;teva luni &#537;i voiam s&#259; &#537;tiu ce altceva ar mai dori
+      lumea s&#259; con&#539;in&#259;. Orice sugestie e binevenit&#259;, dar nu
+      promit s&#259; o &#537;i implementez. Linus Torvalds.
+    </p>
+
+    <p class="dist-lr-text" style="margin: 30px 30px 0px 30px">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P.S. Da - nu con&#539;ine cod Minix
+      &#537;i are un sistem de fi&#537;iere multi-threaded. Nu e portabil
+      (folose&#537;te task-switching 386 etc) &#537;i probabil nu va suporta
+      nimic altceva dec&acirc;t hardiskuri AT, deoarece doar asta am.&raquo;
+    </p>
+
+    <p class="dist-lr-text" style="margin: 30px 30px 0px 30px">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Linux</b> v 0.01 a fost lansat la 17
+      septembrie 1991 &#537;i a fost pus pe net. Versiunea 0.02 a ap&#259;rut pe
+      5 Octombrie, &icirc;mpreun&#259; cu o nou&#259; declara&#539;ie a lui
+      Torvalds:
+    </p>
+
+<!--    <p class="dist-lr-text" style="margin: 30px 30px 0px 30px">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&laquo;De la: Linus Benedict Torvalds
+      Newsgroups: comp.os.minix Subiect: Surse kernel asem&#259;n&#259;tor
+      minixului gratuite pentru 386-AT ID-Mesaj: <> Data: 5 Oct 91 05:41:06 GMT
+      Organiza&#539;ie: Universitatea din Helsinki&raquo;
+    </p>-->
+
+    <p class="dist-lr-text" style="margin: 30px 30px 0px 30px">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Linux</b> a fost dezvoltat sub
+      Licen&#539;a Public&#259; General&#259; GNU GPL, astfel &icirc;nc&acirc;t
+      nu numai Linux &icirc;nsu&#537;i, dar &#537;i codul s&#259;u surs&#259;
+      sunt disponibile tuturor celor interesa&#539;i.
+    </p>
+
+    <p
+      class="dist-lr-text"
+      style="margin: 30px 30px 0px 30px; padding-bottom: 50px"
+    >
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ini&#539;ial dezvoltat &#537;i
+      utilizat de c&#259;tre programatori voluntari, Linux a c&acirc;&#537;tigat
+      suportul industriei IT &#537;i al marilor companii ca IBM,
+      Hewlett-Packard, Dell, SunMicrosystems, Google, Novell sau Nokia, &#537;i
+      a dep&#259;&#537;it ca folosire versiunile proprietare de Unix.
+      Anali&#537;tii atribuie succesul sistemului faptului c&#259; este
+      independent de furnizor, implementarea are un cost sc&#259;zut, iar
+      securitatea &#537;i fiabilitatea sistemului sunt considerate de c&#259;tre
+      speciali&#537;ti drept foarte bune.
+    </p>
+
+    <!--Footer-->
+
+  <footer>
+    <div class="footer-content">
+      <h3><b>LINUX</b></h3>
+      <h4>PROIECT PROGRAMARE WEB</h4>
+      <p>Student: Epure Alexandru-Cristian, TI, III, Grupa 4LF391A<br /></p>
+      <div class="footer-links">
+        <a href="index">Acasă</a>
+        <a href="distributii">Distribuții Linux</a>
+        <a href="istoria">Istoria Linux</a>
+        <a href="chat-login">Conversație live</a>
+        <a href="despre">Despre</a>
+
+      </div>
+    </div>
+  </footer>
+
+    <script type="text/javascript" src="js/terminal-data.js"></script>
+    <script type="text/javascript" src="js/terminal.js"></script>
+    <script type="text/javascript" src="js/commands.js"></script>
+    <script type="text/javascript" src="js/distributii.js"></script>
+  </body>
+</html>

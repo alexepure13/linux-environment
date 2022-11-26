@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slider.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/login_style_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_centered_name.css}">
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+            rel="stylesheet"
+    />
+    <title>Wiki</title>
+</head>
+
+<body>
+<!--Navigatie-->
+<nav class="navbar navbar-dark navbar-expand-md py-3" style="background-color: #1e222b;">
+    <div class="container">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-6"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-6">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="index">Acasă</a></li>
+                <li class="nav-item"><a class="nav-link" href="distributii">Distribuții</a></li>
+                <li class="nav-item"><a class="nav-link active" href="wiki">Wiki</a></li>
+                <li class="nav-item"><a class="nav-link" href="istoria">Istoria</a></li>
+                <li class="nav-item"><a class="nav-link" href="chat-login">Conversație live</a></li>
+                <li class="nav-item"><a class="nav-link" href="despre">Despre</a></li>
+                <li sec:authorize="hasAuthority('ADMIN_VIEW')" class="nav-item"><a class="nav-link" style="color: red;"
+                                                                                   href="admin">Panou de
+                    administrare</a></li>
+            </ul>
+        </div>
+        <div class="d-none d-md-block"><a class="btn btn-primary" style="margin-right: 10px;" role="button"
+                                          href="profile">Profilul meu</a><a class="btn btn-light" role="button"
+                                                                            href="logout">Delogare</a></div>
+    </div>
+</nav>
+
+<div class="element" style="margin-bottom: 50px">
+    <div class="subtitle">
+        <h1 class="title-gradient5">
+            &#10094;&nbsp;WIKI&nbsp;&#10095;
+        </h1>
+    </div>
+</div>
+
+<!--Wiki-->
+
+<h1 style="text-align: center">Când şi de ce a apărut Linux?</h1>
+<p class="dist-lr-text" style="margin: 30px 50px 0px 50px">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Linux</b> este atât un nucleu al sistemului de operare cât şi un termen generic
+    pentru distribuţiile care îl folosesc. Este unul dintre cele mai cunoscute exemple de software free (liber,
+    gratuit): spre deosebire de sistemele de operare proprietare (închise) ca Windows şi MacOS, tot codul sursă este
+    disponibil publicului şi oricine îl poate utiliza, modifica şi redistribui în mod liber.
+    <br>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iniţial, <b>Linux</b> a fost dezvoltat şi utilizat de entuziaşti ai calculatoarelor.
+    De atunci, Linux a căpătat sprijinul unor corporaţii majore ca IBM, Hewlett-Packard şi Novell pentru utilizarea sa
+    pe servere şi a câştigat popularitate pe piaţa calculatoarelor personale.
+    <br>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Principalele sale atuuri sunt:</b>
+    <br>
+    - independenţa de un anume producător,
+    <br>
+    - costul scăzut (sau gratuit),
+    <br>
+    - securitatea şi
+    <br>
+    - stabilitatea.
+</p>
+
+<div class="auto-slider-content">
+    <div class="auto-slider-v2">
+        <div id="slider">
+            <figure>
+                <img src="img/history-1.jpg" alt="Image"/>
+                <img src="img/history-2.jpg" alt="Image"/>
+                <img src="img/history-3.jpg" alt="Image"/>
+            </figure>
+        </div>
+    </div>
+</div>
+
+<h1 style="text-align: center">Comenzi utile (ultimul update - 05.06.2022)</h1>
+
+<section class="content" style="margin: 30px 50px;">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Comenzi</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="datatable" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Comandă</th>
+                                            <th>Descriere</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="command : ${commands}">
+                                            <td th:text="${command.name}"/>
+                                            <td th:text="${command.description}"/>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Comandă</th>
+                                            <th>Descriere</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<h1 style="text-align: center">Diferențe dintre UNIX și Linux</h1>
+<p class="dist-lr-text" style="margin: 30px 50px 0px 50px">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Majoritatea sistemelor de operare <b>Unix</b> se bazează pe standardele POSIX
+    (Portable Operating System Interface for UNIX). Linux nu se bazează direct pe POSIX, ci pe LSB (Linux Standard
+    Base), care este superset de POSIX. LSB este urmat de majoritatea distribuțiilor Linux.
+    <br>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>UNIX</b> a pornit drept un sistem de operare proprietar, comercial, asemenea
+    Windows-ului. Ulterior au apărut și versiuni gratuite, de exemplu FreeBSD, OpenBSD și NetBSD. Linux este un sistem
+    de operare gratuit și open-source de la prima versiune. Există și versiuni de Linux comerciale.
+    <br>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>UNIX</b> este o familie de sisteme de operare, printre care și Linux, iar Linux
+    este o clasă de distribuții de sisteme de operare – care au în mare măsură același substrat – care sunt axate pe
+    anumite activități (gestiunea resurselor server, mediul de dezvoltare multimedia etc.) sau pentru uzul general.
+    <br>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>UNIX</b> este dezvoltat și menținut de către variate companii și organizații
+    non-profit, în timp ce Linux este dezvoltat și menținut de către o comunitate globală de programatori, care
+    contribuie gratuit la dezvoltarea distribuțiilor, dacă aceasta este oferită gratuit, sau contra cost, dacă este
+    comercial.
+    <br>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;În timp ce Linux poate fi folosit pe o variate mare de sisteme (calculatoare
+    personale, tablete, smartphone, cu întrebuințări extinse în mai toate ariile de utilizate a unui sistem de operare,
+    Unix este folosit cu precădere pe servere (web, mail, cloud), având o popularitate mare în rândul universităților și
+    companiilor mari.
+    <br>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Datorită modului în care este menținut Linux, detectarea și remedierea problemelor de
+    orice natură sunt realizate într-un timp rapid, în timp ce Unix necesită un timp mult mai mare de creare și lansare
+    al actualizărilor.
+
+    <br> <br>
+
+</p>
+
+<!--Footer-->
+
+<footer>
+    <div class="footer-content">
+        <h3><b>LINUX</b></h3>
+        <h4>PROIECT PROGRAMARE WEB</h4>
+        <p>Student: Epure Alexandru-Cristian, TI, III, Grupa 4LF391A<br/></p>
+        <div class="footer-links">
+            <a href="index">Acasă</a>
+            <a href="distributii">Distribuții Linux</a>
+            <a href="istoria">Istoria Linux</a>
+            <a href="chat-login">Conversație live</a>
+            <a href="despre">Despre</a>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="js/terminal-data.js"></script>
+<script type="text/javascript" src="js/terminal.js"></script>
+<script type="text/javascript" src="js/commands.js"></script>
+<script type="text/javascript" src="js/distributii.js"></script>
+</body>
+</html>

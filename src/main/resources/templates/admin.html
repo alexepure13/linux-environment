@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slider.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/login_style_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_centered_name.css}">
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+            rel="stylesheet"
+    />
+    <title>Admin</title>
+
+</head>
+<body>
+<nav class="navbar navbar-dark navbar-expand-md py-3" style="background-color: #1e222b;">
+    <div class="container">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-6"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-6">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="index">Acasă</a></li>
+                <li class="nav-item"><a class="nav-link" href="distributii">Distribuții</a></li>
+                <li class="nav-item"><a class="nav-link" href="wiki">Wiki</a></li>
+                <li class="nav-item"><a class="nav-link" href="istoria">Istoria</a></li>
+                <li class="nav-item"><a class="nav-link" href="chat-login">Conversație live</a></li>
+                <li class="nav-item"><a class="nav-link" href="despre">Despre</a></li>
+                <li sec:authorize="hasAuthority('ADMIN_VIEW')" class="nav-item"><a class="nav-link active"
+                                                                                   style="color: red;" href="admin">Panou
+                    de administrare</a></li>
+            </ul>
+        </div>
+        <div class="d-none d-md-block"><a class="btn btn-primary" style="margin-right: 10px;" role="button"
+                                          href="profile">Profilul meu</a><a class="btn btn-light" role="button"
+                                                                            href="logout">Delogare</a></div>
+    </div>
+</nav>
+
+
+<p style="text-align: center; margin: 20px auto; color: #0275d8; font-size: 30px; font-family: 'Satisfy', cursive;">Bun
+    venit, <span style="font-family: 'Satisfy', cursive;" sec:authentication="principal.fullName"></span>!
+    <b>(ADMIN)</b></p>
+
+<h3 style="text-align: center;">Panou de control pentru utilizatori</h3>
+
+<section class="content" style="margin: 30px 50px;">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Utilizatori</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="datatable2" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Acronim</th>
+                                            <th>Nume</th>
+                                            <th>Prenume</th>
+                                            <th>Email</th>
+                                            <th>Rol</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="user : ${users}">
+                                            <td th:text="${user.username}"/>
+                                            <td th:text="${user.firstName}"/>
+                                            <td th:text="${user.lastName}"/>
+                                            <td th:text="${user.email}"/>
+                                            <td th:text="${user.role.name}"/>
+                                            <td style="display: flex; flex-wrap: wrap; flex-direction: column;">
+                                                <a th:href="@{/editUser/{id}(id=${user.id})}" class="btn btn-info"
+                                                   role="button">Editează</a>
+                                                <a th:href="@{/deleteUser/{id}(id=${user.id})}" class="btn btn-danger"
+                                                   style="margin: 5px;" role="button">Șterge</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+                                        <th>Acronim</th>
+                                        <th>Nume</th>
+                                        <th>Prenume</th>
+                                        <th>Email</th>
+                                        <th>Rol</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<h3 style="text-align: center;">Panou de control pentru comenzi Linux</h3>
+
+<a th:href="@{/CommandAddForm}" class="btn btn-primary"
+   style="text-align: center; margin: 20px auto 0px auto; display: flex; justify-content: center; width: 200px;"
+   role="button">Adaugă comandă</a>
+
+
+<section class="content" style="margin: 30px 50px;">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Comenzi</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="datatable" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Comandă</th>
+                                            <th>Descriere</th>
+                                            <th>Acțiuni</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="command : ${commands}">
+                                            <td th:text="${command.name}"/>
+                                            <td th:text="${command.description}"/>
+                                            <td style="display: flex; flex-wrap: wrap; flex-direction: column;">
+                                                <a th:href="@{/editCommand/{id}(id=${command.id})}" class="btn btn-info"
+                                                   role="button">Editează</a>
+                                                <a th:href="@{/deleteCommand/{id}(id=${command.id})}"
+                                                   class="btn btn-danger" style="margin: 5px;" role="button">Șterge</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Comandă</th>
+                                            <th>Descriere</th>
+                                            <th>Acțiuni</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/slider.css" />
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/login_style_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_centered_name.css}">
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Despre</title>
+  </head>
+
+  <body>
+    <!--Navigatie-->
+    <nav class="navbar navbar-dark navbar-expand-md py-3" style="background-color: #1e222b;">
+      <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-6"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-6">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link" href="index">Acasă</a></li>
+            <li class="nav-item"><a class="nav-link" href="distributii">Distribuții</a></li>
+            <li class="nav-item"><a class="nav-link" href="wiki">Wiki</a></li>
+            <li class="nav-item"><a class="nav-link" href="istoria">Istoria</a></li>
+            <li class="nav-item"><a class="nav-link" href="chat-login">Conversație live</a></li>
+            <li class="nav-item"><a class="nav-link active" href="despre">Despre</a></li>
+            <li sec:authorize="hasAuthority('ADMIN_VIEW')" class="nav-item"><a class="nav-link" style="color: red;" href="admin">Panou de administrare</a></li>
+          </ul>
+        </div>
+        <div class="d-none d-md-block"><a class="btn btn-primary" style="margin-right: 10px;" role="button" href="profile">Profilul meu</a><a class="btn btn-light" role="button" href="logout">Delogare</a></div>
+      </div>
+    </nav>
+
+    <div class="element" style="margin-bottom: 15px">
+      <div class="subtitle">
+        <h1 class="title-gradient5">&#10094;&nbsp;Despre&nbsp;&#10095;</h1>
+      </div>
+    </div>
+
+    <img
+      src="img/iesc.png"
+      style="text-align: center; display: block; margin: auto"
+    />
+
+    <!--Despre-->
+
+    <div class="profile-container">
+      <img src="img/me.png" class="profile" />
+      <div class="terminal-profile">
+        <div id="terminalContent">
+          <div class="terminal-container">
+            <div id="terminalHeader">
+              <div id="headerName">Live terminal</div>
+            </div>
+
+            <div id="terminalBody">
+              <p>
+                <b
+                  >Proiect - Programare WEB<br />
+                  Tema: LINUX</b
+                >
+                <br /><br />
+                Student: Epure Alexandru-Cristian
+                <br />
+                Tehnologia Informației
+                <br />
+                III
+                <br />
+                Grupa 4LF391A
+              </p>
+              <br /><br />
+              Tasteză "help" pentru a vizualiza lista de comenzi<br />
+              $ <input type="text" autofocus />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Localizare-->
+
+    <section class="map-clean">
+      <div class="container">
+        <div class="intro">
+          <h2 class="text-center">Localizare</h2>
+          <p class="text-center">Sediul nostru se află la adresa:&nbsp;<br><strong>Strada Mihail Kogălniceanu 18,&nbsp;Brașov 500173</strong><br><br></p>
+        </div>
+      </div><iframe allowfullscreen="" frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBKogtwW46YKhIzUG2Urhfx-ux7yO7cdLw&amp;q=Strada+Mihail+Kog%C4%83lniceanu+18%2C+Bra%C8%99ov+500173&amp;zoom=17" width="100%" height="500"></iframe>
+    </section>
+
+    <!--Contact-->
+
+    <div class="container-md" style="padding: 40px;">
+      <h1 class="text-center m-2">Contactează-ne</h1>
+      <div class="text-center" style="color: #198754; font-weight: bold;">
+        <small id="status" th:text="${status}">Status: Pending</small>
+      </div>
+      <form id="sendMail" th:action="@{/sendMail}">
+        <div class="form-group">
+          <label for="tomail" class="font-weight-bold mt-2">Către</label>
+          <input readonly value="alexepure50@gmail.com" type="text" id="tomail" name="tomail" class="form-control" placeholder="Enter your email address" required="required" />
+
+          <label for="subject" class="font-weight-bold mt-2">Subiect</label>
+          <input type="text" id="subject" name="subject" class="form-control" placeholder="Tastează subiectul" required="required" />
+
+          <label for="body" class="font-weight-bold mt-2">Mesaj</label>
+          <textarea name="body" id="body" class="form-control" rows="10" required="required" ></textarea>
+        </div>
+        <div class="text-center mt-2" style="margin: 30px;">
+          <button class="btn btn-primary" type="submit">Trimite</button>
+        </div>
+      </form>
+    </div>
+
+
+    <!--Footer-->
+    <footer>
+      <div class="footer-content">
+        <h3><b>LINUX</b></h3>
+        <h4>PROIECT PROGRAMARE WEB</h4>
+        <p>Student: Epure Alexandru-Cristian, TI, III, Grupa 4LF391A<br /></p>
+        <div class="footer-links">
+          <a href="index">Acasă</a>
+          <a href="distributii">Distribuții Linux</a>
+          <a href="istoria">Istoria Linux</a>
+          <a href="chat-login">Conversație live</a>
+          <a href="despre">Despre</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      $(document).ready(function(){
+        $("#sendMail").on("submit",function(event){
+          event.preventDefault();
+          var f = $(this).serialize();
+          $.ajax({
+            url: "/sendMail",
+            data: f,
+            method: "post",
+            success: function(data){
+              if(data.trim()==="done") {
+                $("#status").show();
+                $("#status").removeClass("text-danger");
+                $("#status").addClass("text-success");
+                $("#status").html("Mail-ul a fost trimis cu succes!");
+              } else {
+                $("#status").show();
+                $("#status").removeClass("text-success");
+                $("#status").addClass("text-danger");
+                $("#status").html("Ceva nu a mers bine!");
+              }
+            },
+            error: function(){
+              alert("Ceva nu a mers bine! Încearcă mai târziu!");
+            }
+          });
+        });
+      });
+    </script>
+
+    <script type="text/javascript" src="js/terminal-data.js"></script>
+    <script type="text/javascript" src="js/terminal.js"></script>
+    <script type="text/javascript" src="js/commands.js"></script>
+    <script type="text/javascript" src="js/distributii.js"></script>
+  </body>
+</html>

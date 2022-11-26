@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slider.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/login_style_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_centered_name.css}">
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+            rel="stylesheet"
+    />
+    <title>Distribuții</title>
+</head>
+
+<body>
+<!--Navigatie-->
+<nav class="navbar navbar-dark navbar-expand-md py-3" style="background-color: #1e222b;">
+    <div class="container">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-6"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-6">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="index">Acasă</a></li>
+                <li class="nav-item"><a class="nav-link active" href="distributii">Distribuții</a></li>
+                <li class="nav-item"><a class="nav-link" href="wiki">Wiki</a></li>
+                <li class="nav-item"><a class="nav-link" href="istoria">Istoria</a></li>
+                <li class="nav-item"><a class="nav-link" href="chat-login">Conversație live</a></li>
+                <li class="nav-item"><a class="nav-link" href="despre">Despre</a></li>
+                <li sec:authorize="hasAuthority('ADMIN_VIEW')" class="nav-item"><a class="nav-link" style="color: red;"
+                                                                                   href="admin">Panou de
+                    administrare</a></li>
+            </ul>
+        </div>
+        <div class="d-none d-md-block"><a class="btn btn-primary" style="margin-right: 10px;" role="button"
+                                          href="profile">Profilul meu</a><a class="btn btn-light" role="button"
+                                                                            href="logout">Delogare</a></div>
+    </div>
+</nav>
+
+<div class="element" style="margin-bottom: 50px">
+    <div class="subtitle">
+        <h1 class="title-gradient5">
+            &#10094;&nbsp;Distribuții Linux&nbsp;&#10095;
+        </h1>
+    </div>
+</div>
+
+<!--Distributii-->
+<h1 style="text-align: center">Ce este o distribuție Linux?</h1>
+<p class="dist-lr-text" style="margin: 50px">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O distribuție Linux este un sistem de
+    operare realizat dintr-o colecție de aplicații care au la bază kernel-ul
+    de linux. Multe din interfețele grafice ale acestor distribuiții sunt
+    foarte apropiate de mediul de lucru Windows. Acest lucru oferă o oarecare
+    familiaritate acestui sistem de operare, iar multe din aplicațiile uzuale
+    au versiuni și pe Linux.
+    <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cea mai mare diferență constă în modul
+    în care se obțin aceste aplicații, el fiind similar cu cel al
+    smartphone-urilor. Acestea nu se descarcă direct de pe internet pentru a
+    fi instalate, ci se instalează dintr-un manager de sistem care se
+    conectează la diverse arhive online.
+</p>
+
+<div class="dist-container-lr">
+    <img src="img/linux-mint.gif" class="dist-container-img"/>
+    <div class="dist-lr-content">
+        <h1>Linux Mint</h1>
+        <p class="dist-lr-text">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux Mint este o distribuție
+            bazată pe Ubuntu și este ideala pentru orice laptop sau sistem
+            desktop. Oferă combinația perfectă între o interfață grafică foarte
+            atractivă și funcționalitate de top. Este foarte similar cu Windows
+            din punct de vedere estetic și veți găsi cam orice tip de aplicație,
+            indiferent dacă vorbim despre productivitate sau home-use.
+        </p>
+    </div>
+</div>
+<div class="dist-container-rl">
+    <div class="dist-rl-content">
+        <h1>Manjaro Linux</h1>
+        <p class="dist-rl-text">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Manjaro este o distribuție de
+            Linux bazată pe Arch, dar cu propria comunitate și propriile arhive de
+            aplicații. Este o versiune foarte stabilă, foarte flexibilă și din ce
+            în ce mai populară.
+            <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Veți găsi majoritatea aplicațiilor
+            pe Manjaro și este un sistem de operare care combină productivitatea
+            cu entertainment-ul. Acesta poate fi instalat pe orice configurație și
+            funcționează foarte bine chiar și pe dispozitive mai vechi.
+        </p>
+    </div>
+    <img src="img/manjaro-linux.gif" class="dist-container-img"/>
+</div>
+
+<div class="dist-container-lr">
+    <img src="img/mx-linux.gif" class="dist-container-img"/>
+    <div class="dist-lr-content">
+        <h1>MX Linux</h1>
+        <p class="dist-lr-text">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MX Linux este o distribuție bazată
+            pe Debian, care a devenit foarte populară în ultimii ani. Designul
+            este unul minimalist și orientat spre productivitate. Sistemul de
+            operare nu necesită cerințe hardware prea mari dar este bogat în
+            facilități. Interfața este foarte asemănătoare cu Windows și există o
+            mulțime de programe scrise special pentru acest distro.
+        </p>
+    </div>
+</div>
+
+<div class="dist-container-rl">
+    <div class="dist-rl-content">
+        <h1>Ubuntu Linux</h1>
+        <p class="dist-rl-text">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ubuntu este probabil una dintre
+            cele mai populare și mai cunoscute distribuții de Linux pentru
+            utilizatori mainstream. Acest sistem de operare se pretează foarte
+            bine pentru utilizatorii noi și este foarte ușor de folosit și
+            înțeles.
+        </p>
+    </div>
+    <img src="img/ubuntu.gif" class="dist-container-img"/>
+</div>
+
+<div class="dist-container-lr">
+    <img src="img/arch-linux.gif" class="dist-container-img"/>
+    <div class="dist-lr-content">
+        <h1>Arch Linux</h1>
+        <p class="dist-lr-text">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Arch Linux este o distribuție de
+            Linux minimalistă, foarte customizabilă și care vă oferă cele mai
+            recente inovații. Interfața grafică este ușor de folosit iar
+            aplicațiile pe care le puteți descărca sunt foarte diversificate.
+            <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Acest sistem de operare nu vine cu
+            multe aplicații instalate, utilizatorul având control deplin asupra
+            acestui aspect. Veți instala doar softurile de care aveți nevoie și
+            nimic mai mult. Acest lucru va rezulta într-o experiență mult mai
+            fluidă și concentrată pe productivitate.
+        </p>
+    </div>
+</div>
+
+<h1 style="text-align: center">Gaming pe Linux?</h1>
+<p class="dist-lr-text" style="margin: 30px">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Și dacă mulți dintre voi credeați că
+    nu se poate face gaming pe Linux, veți fi surprinși să aflați cât de
+    avansate au devenit unele dintre aceste distribuții. Veți putea instala
+    Steam, iar cu ajutorul unui tip de emulator veți putea juca o mare parte
+    dintre jocurile pentru Windows.
+</p>
+
+<!--Footer-->
+
+<footer>
+    <div class="footer-content">
+        <h3><b>LINUX</b></h3>
+        <h4>PROIECT PROGRAMARE WEB</h4>
+        <p>Student: Epure Alexandru-Cristian, TI, III, Grupa 4LF391A<br/></p>
+        <div class="footer-links">
+            <a href="index">Acasă</a>
+            <a href="distributii">Distribuții Linux</a>
+            <a href="istoria">Istoria Linux</a>
+            <a href="chat-login">Conversație live</a>
+            <a href="despre">Despre</a>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="js/terminal-data.js"></script>
+<script type="text/javascript" src="js/terminal.js"></script>
+<script type="text/javascript" src="js/commands.js"></script>
+<script type="text/javascript" src="js/distributii.js"></script>
+</body>
+</html>

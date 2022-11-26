@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+
+</head>
+<body>
+
+<!--Form-ul de validare-->
+<div class="container"
+     style="position:absolute; left:0; right:0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
+    <div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center">
+        <div class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg" style="border-radius: 5px;">
+            <div class="p-5">
+                <div class="text-center">
+                    <h4 class="text-dark mb-4">Creează un cont!</h4>
+                </div>
+                <form class="user" th:action="@{/addUser}" th:object="${user}">
+                    <div class="mb-3"><input class="form-control form-control-user" type="text" placeholder="Id"
+                                             th:field="*{id}" hidden></div>
+                    <div class="mb-3"><input class="form-control form-control-user" type="text"
+                                             placeholder="Nume utilizator" th:field="*{username}" required=""></div>
+                    <div class="mb-3"><input class="form-control form-control-user" type="email" id="email"
+                                             placeholder="Adresă de email" th:field="*{email}" required=""></div>
+                    <div class="row mb-3">
+                        <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password"
+                                                                  id="password" th:field="*{password}"
+                                                                  placeholder="Parolă" required=""></div>
+                        <div class="col-sm-6"><input class="form-control form-control-user" type="password"
+                                                     id="verifyPassword" placeholder="Repetă parola" required=""></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text"
+                                                                  placeholder="Prenume" th:field="*{firstName}"
+                                                                  required=""></div>
+                        <div class="col-sm-6"><input class="form-control form-control-user" type="text"
+                                                     placeholder="Nume" th:field="*{lastName}" required=""></div>
+                    </div>
+                    <div class="row mb-3" hidden>
+                        <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text"
+                                                                  placeholder="active" th:field="*{active}" required=""
+                                                                  hidden></div>
+                    </div>
+                    <div class="row mb-3" readonly style="margin: 0 1px">
+                        <select class="selectpicker form-control" id="idRoles" readonly
+                                th:field="${user.role.id}">
+                            <option value="2" readonly
+                                    th:text="${roleList.get(0).name}"></option>
+                        </select>
+
+                    </div>
+                    <div class="row mb-3">
+                        <p id="emailErrorMsg" class="text-danger" style="display:none;"></p>
+                        <p id="passwordErrorMsg" class="text-danger" style="display:none;"></p>
+                    </div>
+
+                    <button class="btn btn-primary d-block btn-user w-100" id="submitBtn" type="submit">
+                        Înregistrează-te
+                    </button>
+                    <hr>
+                </form>
+                <div class="text-center"><a class="small" href="login.html">Ai deja un cont? Loghează-te.</a></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+    let email = document.getElementById("email")
+    let password = document.getElementById("password")
+    let verifyPassword = document.getElementById("verifyPassword")
+    let submitBtn = document.getElementById("submitBtn")
+    let emailErrorMsg = document.getElementById('emailErrorMsg')
+    let passwordErrorMsg = document.getElementById('passwordErrorMsg')
+
+    function displayErrorMsg(type, msg) {
+        if(type == "email") {
+            emailErrorMsg.style.display = "block"
+            emailErrorMsg.innerHTML = msg
+            submitBtn.disabled = true
+        }
+        else {
+            passwordErrorMsg.style.display = "block"
+            passwordErrorMsg.innerHTML = msg
+            submitBtn.disabled = true
+        }
+    }
+
+    function hideErrorMsg(type) {
+        if(type == "email") {
+            emailErrorMsg.style.display = "none"
+            emailErrorMsg.innerHTML = ""
+            submitBtn.disabled = true
+            if(passwordErrorMsg.innerHTML == "")
+                submitBtn.disabled = false
+        }
+        else {
+            passwordErrorMsg.style.display = "none"
+            passwordErrorMsg.innerHTML = ""
+            if(emailErrorMsg.innerHTML == "")
+                submitBtn.disabled = false
+        }
+    }
+
+    // Validare parolă până la schimbare
+    password.addEventListener("change", function() {
+
+        // Dacă parola nu are o valoare, atunci nu va fi schimbată și nu va fi afișată o eroare
+        if(password.value.length == 0 && verifyPassword.value.length == 0) hideErrorMsg("password")
+
+
+        // Dacă parola conține o valoare, atunci ea va fi verificată. În acest caz parolele nu corespund
+        else if(password.value !== verifyPassword.value) displayErrorMsg("password", "Parolele nu corespund")
+
+        // Când parolele corespund, verificăm lungimea
+        else {
+            // Verificare dacă parola are cel puțin 8 caractere
+            if(password.value.length >= 8)
+                hideErrorMsg("password")
+            else
+                displayErrorMsg("password", "Parola trebuie să conțină cel puțin 8 caractere")
+        }
+    })
+
+    verifyPassword.addEventListener("change", function() {
+        if(password.value !== verifyPassword.value)
+            displayErrorMsg("password", "Parolele nu corespund")
+        else {
+            // Verificare dacă parola are cel puțin 8 caractere
+            if(password.value.length >= 8)
+                hideErrorMsg("password")
+            else
+                displayErrorMsg("password", "Parola trebuie să conțină cel puțin 8 caractere")
+        }
+    })
+
+    // Validare email până la schimbare
+    email.addEventListener("change", function() {
+        // Verifică dacă adresa de email este validă folosind o expresie
+        if(email.value.match(/^[^@]+@[^@]+\.[^@]+$/))
+            hideErrorMsg("email")
+        else
+            displayErrorMsg("email", "Email invalid")
+    });
+</script>
+</div>
+
+</body>
+</html>

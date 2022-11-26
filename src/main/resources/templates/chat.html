@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chat Room</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width">
+    <link rel="stylesheet" th:href="@{/webjars/mdui/dist/css/mdui.css}">
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/mdui/dist/js/mdui.js}"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slider.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/login_style_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_centered_name.css}">
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+
+    <link
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+            rel="stylesheet"
+    />
+</head>
+<body class="mdui-theme-primary-light-blue mdui-theme-accent-light-blue" style="background: rgb(6,0,115);
+background: linear-gradient(90deg, rgba(6,0,115,1) 0%, rgba(131,177,255,1) 0%, rgba(255,255,255,1) 100%);">
+
+<!--Navigatie-->
+<nav class="navbar navbar-dark navbar-expand-md py-3" style="background-color: #1e222b;">
+    <div class="container">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-6"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-6">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="index">Acasă</a></li>
+                <li class="nav-item"><a class="nav-link" href="distributii">Distribuții</a></li>
+                <li class="nav-item"><a class="nav-link" href="wiki">Wiki</a></li>
+                <li class="nav-item"><a class="nav-link" href="istoria">Istoria</a></li>
+                <li class="nav-item"><a class="nav-link active" href="chat-login">Conversație live</a></li>
+                <li class="nav-item"><a class="nav-link" href="despre">Despre</a></li>
+                <li sec:authorize="hasAuthority('ADMIN_VIEW')" class="nav-item"><a class="nav-link" style="color: red;"
+                                                                                   href="admin">Panou de
+                    administrare</a></li>
+            </ul>
+        </div>
+        <div class="d-none d-md-block"><a class="btn btn-primary" style="margin-right: 10px;" role="button"
+                                          href="profile">Profilul meu</a><a class="btn btn-light" role="button"
+                                                                            href="logout">Delogare</a></div>
+    </div>
+</nav>
+<div>
+    <div class="mdui-toolbar" style="background: rgb(6,0,115);
+background: linear-gradient(90deg, rgba(6,0,115,1) 0%, rgba(45,74,126,1) 0%, rgba(102,150,240,1) 100%);">
+        <span class="mdui-typo-title" style="color: white;">Linux - Cameră pentru conversații</span>
+        <div class="mdui-toolbar-spacer"></div>
+        <a id="exit-app" class="mdui-btn mdui-btn-icon" style="color: white;" th:href="@{/}">
+            <i class="mdui-icon material-icons">exit_to_app</i>
+        </a>
+    </div>
+</div>
+
+
+<div style="margin-top:15px; text-align: center;">
+    <i class="mdui-icon">Conectat cu numele de utilizator：</i>
+    <i class="mdui-icon" id="username" th:text="${username}"></i>
+</div>
+
+<div style="display: flex;  justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    <span class="mdui-chip-icon mdui-color-blue">
+                        <i class="mdui-icon material-icons">face</i></span>
+    <span class="mdui-chip-title">Utilizatori conectați</span>
+    <!-- TODO: check online number num -->
+    <span class="mdui-chip-title chat-num"></span>
+</div>
+
+<!--Secțiune de control-->
+
+<div class=""
+     style="display: flex; justify-content: center; flex-wrap: wrap; align-content: center; align-items: center;">
+    <div class="mdui-textfield mdui-textfield-floating-label" style="text-align: left;">
+        <i class="mdui-icon material-icons">textsms</i>
+        <label class="mdui-textfield-label">Send Text</label>
+        <input class="mdui-textfield-input" id="msg"/>
+    </div>
+    <div style="padding:20px 35px; margin-top:30px; display: inline-block;">
+        <!-- TODO: add a send button to send message -->
+        <button class="mdui-btn mdui-ripple" style="background: #2d4a7e;"
+                onclick="sendMsgToServer()" id="send-msg"><span style="color: white; font-weight: bold">TRIMITE</span>
+        </button>
+
+        <button class="mdui-btn mdui-color-red mdui-ripple"
+                onclick="clearMsg()"><span style="color: white; font-weight: bold">ȘTERGE MESAJELE</span>
+        </button>
+    </div>
+</div>
+<div style="height: 600px; overflow: auto;">
+    <div class=""
+         style="padding:10px 0; display: flex; justify-content: center; text-wrap: normal; flex-wrap: nowrap; margin: 10px 20px;">
+
+        <!-- Adăugare mesaj -->
+        <div style="text-align: left; display: flex;justify-content: center; flex-wrap: wrap; flex-direction: column-reverse; text-wrap: normal; align-items: flex-start;"
+             class="message-container"></div>
+    </div>
+</div>
+
+<!--Footer-->
+
+<footer>
+    <div class="footer-content">
+        <h3><b>LINUX</b></h3>
+        <h4>PROIECT PROGRAMARE WEB</h4>
+        <p>Student: Epure Alexandru-Cristian, TI, III, Grupa 4LF391A<br/></p>
+        <div class="footer-links">
+            <a href="index">Acasă</a>
+            <a href="distributii">Distribuții Linux</a>
+            <a href="istoria">Istoria Linux</a>
+            <a href="chat-login">Conversație live</a>
+            <a href="despre">Despre</a>
+        </div>
+    </div>
+</footer>
+
+<script th:inline="javascript">
+    /**
+     * WebSocket Client
+
+     */
+    function getWebSocket() {
+
+        var username =/*[[${username}]]*/;
+        var webSocket = new WebSocket('ws://localhost:8080/chat/' + username);
+        /**
+         * websocket deschidere conexiune
+         */
+        webSocket.onopen = function (event) {
+            console.log('WebSocket deschide conexiunea');
+        };
+
+        webSocket.onmessage = function (event) {
+            console.log('WebSocket a primit：%c' + event.data, 'color:green');
+            // Primeste mesajul de la server
+            var message = JSON.parse(event.data) || {};
+            var $messageContainer = $('.message-container');
+            if (message.type === 'SPEAK') {
+                $messageContainer.append(
+                    '<div class="mdui-card" style="margin: 8px 0;">' +
+                    '<div class="mdui-card-media">' +
+                    '<div class="mdui-card-content message-content">' + '<span style="color: #0a53be; font-weight: bold">' + message.username + '</span>' + "：" + message.msg + '</div>' +
+                    '</div></div>');
+            }
+            $('.chat-num').text(message.onlineCount);
+            var $cards = $messageContainer.children('.mdui-card:visible').toArray();
+            if ($cards.length > 10) {
+                $cards.forEach(function (item, index) {
+                    index < $cards.length - 5 && $(item).slideUp('fast');
+                });
+            }
+        };
+        /**
+         * Inchide conexiunea
+         */
+        webSocket.onclose = function (event) {
+            console.log('WebSocket închidere conexiune.');
+        };
+        /**
+         * Exceptie
+         */
+        webSocket.onerror = function (event) {
+            console.log('WebSocket exception.');
+        };
+        return webSocket;
+    }
+
+    var webSocket = getWebSocket();
+
+    /**
+     *  Trimite mesaje către server
+     */
+    function sendMsgToServer() {
+        var $message = $('#msg');
+        if ($message.val()) {
+            webSocket.send(JSON.stringify({username: $('#username').text(), msg: $message.val()}));
+            $message.val(null);
+        }
+    }
+
+    /**
+     * Curăță ecran
+     */
+    function clearMsg() {
+        $(".message-container").empty();
+    }
+
+    /**
+     * Apsaă enter pentru a trimite mesajul.
+     */
+    document.onkeydown = function (event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        e.keyCode === 13 && sendMsgToServer();
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/slider.css" />
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/login_style_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_centered_name.css}">
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+      rel="stylesheet"
+    />
+    <title>Linux</title>
+  </head>
+
+  <body onload="loadAtStart();">
+    <!--Navigatie-->
+    <nav class="navbar navbar-dark navbar-expand-md py-3" style="background-color: #1e222b;">
+      <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-6"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-6">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link active" href="index">Acasă</a></li>
+            <li class="nav-item"><a class="nav-link" href="distributii">Distribuții</a></li>
+            <li class="nav-item"><a class="nav-link" href="wiki">Wiki</a></li>
+            <li class="nav-item"><a class="nav-link" href="istoria">Istoria</a></li>
+            <li class="nav-item"><a class="nav-link" href="chat-login">Conversație live</a></li>
+            <li class="nav-item"><a class="nav-link" href="despre">Despre</a></li>
+            <li sec:authorize="hasAuthority('ADMIN_VIEW')" class="nav-item"><a class="nav-link" style="color: red;" href="admin">Panou de administrare</a></li>
+          </ul>
+        </div>
+        <div class="d-none d-md-block"><a class="btn btn-primary" style="margin-right: 10px;" role="button" href="profile">Profilul meu</a><a class="btn btn-light" role="button" href="logout">Delogare</a></div>
+      </div>
+    </nav>
+
+    <p style="text-align: center; margin: 20px auto; color: #0275d8; font-size: 30px; font-family: 'Satisfy', cursive;">Bun venit, <span style="font-family: 'Satisfy', cursive;" sec:authentication="principal.fullName"></span>!</p>
+
+    <section id="header">
+      <div class="container-header">
+        <img
+          src="img/iesc_transparent.png"
+          style="text-align: left; display: block"
+        />
+        <h1>LINUX</h1>
+        <p>
+          Nucleul Linux a fost dezvoltat inițial pentru microprocesorul
+          <b>Intel 386</b>, dar în prezent rulează pe o mare gamă de
+          microprocesoare și arhitecturi de calculatoare.
+        </p>
+      </div>
+      <div id="terminalContent">
+        <div class="terminal-container">
+          <div id="terminalHeader">
+            <div id="headerName">Live terminal</div>
+          </div>
+
+          <div id="terminalBody">
+            <span id="data-t"></span><br />
+            <p style="font-size: 1em; text-align: left; color: white;">Bun venit, <span sec:authentication="principal.fullName"></span>!</p>
+            <p style="font-size: 1em; text-align: left; color: white;">Terminal username: <span sec:authentication="principal.username"></span></p>
+            Comenzi disponibile: help, ls, ps, name, echo, date, pwd, hostname,
+            clear
+            <br /><br />
+            Tasteză "help" pentru a vizualiza lista de comenzi<br />
+            $ <input type="text" autofocus />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Despre Linux-->
+
+    <div class="element">
+      <div class="subtitle">
+        <h1 class="title-gradient1">
+          &#10094;&nbsp;Despre Linux&nbsp;&#10095;
+        </h1>
+      </div>
+    </div>
+    <div class="text-content">
+      <p class="despre-linux-text">
+        <b>Linux</b> este o familie de sisteme de operare de tip Unix care
+        folosesc Nucleul Linux (în engleză kernel). Linux poate fi instalat pe o
+        varietate largă de hardware, începând cu telefoane mobile, tablete,
+        console video, continuând cu calculatoare personale până la
+        supercomputere. Linux este cunoscut în principal pentru utilizarea sa ca
+        server, în 2009 i se estima o cotă de piață între 20-40%. Cota de piață
+        de desktop este estimată între 1-2% și 4.8%. În ultimii ani, Linux a
+        început să devină tot mai popular atât datorită unor distribuții precum
+        Ubuntu, openSUSE, Fedora, precum și datorită apariției netbook-urilor și
+        a noii generații de telefoane inteligente (în engleză smart phone) care
+        rulează o versiune încorporată de Linux.
+      </p>
+      <div class="auto-slider">
+        <div id="slider">
+          <figure>
+            <img src="img/linux-1.jpg" alt="Image" />
+            <img src="img/linux-2.jpg" alt="Image" />
+            <img src="img/linux-3.jpg" alt="Image" />
+          </figure>
+          <div class="indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!--Comenzi Linux-->
+
+    <div class="element">
+      <div class="subtitle">
+        <h1 class="title-gradient2">
+          &#10094;&nbsp;Comenzi Linux&nbsp;&#10095;
+        </h1>
+      </div>
+    </div>
+
+    <div class="commands">
+      <input
+        type="text"
+        id="input-search-commands"
+        onkeyup="searchCommands()"
+        placeholder="Caută comenzi.."
+      />
+      <p class="comanda-text-info">Click pe o comandă pentru detalii!</p>
+
+      <ul id="search-commands-ul">
+        <li><a href="javascript:;" id="pwd" onclick="pwdClick();">pwd</a></li>
+        <p class="commands-show-content" id="pwd-content">
+          <b>pwd</b> - (print working directory) listează calea absolută a
+          directorului curent (direcotrul în care ne aflăm)
+        </p>
+        <li><a href="javascript:;" id="cd" onclick="cdClick();">cd</a></li>
+        <p class="commands-show-content" id="cd-content">
+          <b>cd /another/location</b> - (change directory) schimbă directorul
+          curent în directorul primit ca paramentru
+          <br />
+          <b>$ cd</b> - N-am folosit niciun parametru deci se preia automat home
+          dir (notat cu ~)
+          <br />
+          <b>$ pwd</b> - Folosesc pwd pentru verificarea directorului curent
+        </p>
+        <li><a href="javascript:;" id="ls" onclick="lsClick();">ls</a></li>
+        <p class="commands-show-content" id="ls-content">
+          <b>ls /some/directory</b> - (list) listează conţinutul directorului
+          primit ca parametru
+          <br />
+          Acesta poate fi de forma:
+          <br />
+          <br />
+          - nimic - listează conţinutul directorului curent (suntem în / de la
+          comanda precedentă)
+          <br />
+          <b>$ ls /usr</b>
+          <br />
+          - cale relativă sau absolută - listează conţinutul directorului primit
+          ca parametru
+          <br />
+          <b> $ ls /usr</b>
+          <br />
+          - ../ - listează conţinutul directorului părinte
+          <br />
+          <b>$ ls ../</b>
+        </p>
+        <li><a href="javascript:;" id="cat" onclick="catClick();">cat</a></li>
+        <p class="commands-show-content" id="cat-content">
+          Comanda <b>cat</b> este folosită pentru concatenare de șiruri,
+          fișiere, etc. De exemplu putem vizualiza mai multe fișiere în același
+          timp
+        </p>
+        <li><a href="javascript:;" id="cp" onclick="cpClick();">cp</a></li>
+        <p class="commands-show-content" id="cp-content">
+          <b>cp fişier_sursă fişier_destinaţie</b> – (copy) copiază fişierul sau
+          directorul indicat într-un nou loc
+          <br />
+          <b>$ cp my_file my_file1</b> - comanda a creat o copie a fişierului
+          my_file numită my_file1
+          <br />
+          Poate primi ca parametri calea relativă sau absolută pentru fiecare
+          din cei 2 separat; dacă nu se indică o cale pentru destinaţie
+          directorul sau fişierul din sursă va fi copiat direct în directorul
+          curent.
+          <br />
+          <b> $ cp dir1/dir2/my_file my_file</b> comanda va crea o copie a
+          fişierului /home/my_home_dir/dir1/dir2/my_file în
+          /home/my_home_dir/my_file
+          <br />
+          De asemenea dacă la sursă nu se indică numele fişierului ci doar
+          directorul/directoarele care îl conţin (cu / obligatoriu la sfârşit)
+          numele se va păstra.
+          <br />
+          <b>$ cp dir1/dir2/my_file dir1/</b> comanda va crea o copie a
+          fişierului /home/my_home_dir/dir2/di2/my_file în
+          /home/my_home_dir/dir1/my_file
+          <br />
+          Dacă destinaţia indicată există deja comanda va aştepta o confirmare
+          care poate fi y pentru yes sau n pentru no.
+        </p>
+        <li><a href="javascript:;" id="mv" onclick="mvClick();">mv</a></li>
+        <p class="commands-show-content" id="mv-content">
+          <b>mv fişier_sursă fişier_destinaţie</b> - (move) mută un fişier sau
+          director în altă locaţie dar în acelaşi timp poate să şi redenumească.
+          <br />
+          <b> $ mv my_file my_new_file</b>
+        </p>
+        <li><a href="javascript:;" id="rm" onclick="rmClick();">rm</a></li>
+        <p class="commands-show-content" id="rm-content">
+          <b>rm fişier</b> - (remove) şterge un fişier sau director
+          <br />
+          <b> $ rm my_file</b>
+          <br />
+          rm: remove regular file `my_file'?
+        </p>
+        <li>
+          <a href="javascript:;" id="mkdir" onclick="mkdirClick();">mkdir</a>
+        </li>
+        <p class="commands-show-content" id="mkdir-content">
+          <b>mkdir nume_director</b> - (make directory) crează un director cu
+          numele indicat Acesta poate fi sub formă de:
+          <br />
+          <br />
+          - cale relativă - va fi creat în folderul curent
+          <br />
+          <b>$ mkdir my_dir</b>
+          <br />
+          - cale absolută - va fi creat exact în locaţia indicată
+          <br />
+          <b>$ mkdir /home/my_home_dir/my_dir</b>
+        </p>
+        <li>
+          <a href="javascript:;" id="rmdir" onclick="rmdirClick();">rmdir</a>
+        </li>
+        <p class="commands-show-content" id="rmdir-content">
+          <b>rmdir nume_director</b> - (remove directory) şterge directorul
+          indicat numai dacă este gol Poate primi ca argument cale relativă sau
+          absolută şi are aceleaşi opţiuni ca mkdir (-p, -v); diferenţa constă
+          în faptul că -p va şterge directoarele părinţi.
+          <br />
+          <b>$ rmdir -p dir1/dir2</b>
+        </p>
+        <li>
+          <a href="javascript:;" id="touch" onclick="touchClick();">touch</a>
+        </li>
+        <p class="commands-show-content" id="touch-content">
+          <b> touch nume_fişier</b> – crează un fişier text cu numele indicat
+          Acestă comandă este folosită numai în cazuri speciale; în mod normal
+          fişierele sunt create de aplicaţii şi nu ca atare (ex: openoffice sau
+          descărcate de pe net). În cazul de faţă o vom folosi pentru a crea un
+          fişier exemplificativ.
+          <br />
+          <b>$ touch my_file</b>
+        </p>
+        <li>
+          <a href="javascript:;" id="dir" onclick="dirClick();">dir</a>
+        </li>
+        <p class="commands-show-content" id="dir-content">
+          <b>dir</b> - Listeaza fisierele dintr-un director
+        </p>
+        <li>
+          <a href="javascript:;" id="echo" onclick="echoClick();">echo</a>
+        </li>
+        <p class="commands-show-content" id="echo-content">
+          <b>echo</b> - Afiseaza o linie de text
+        </p>
+        <li>
+          <a href="javascript:;" id="chmod" onclick="chmodClick();">chmod</a>
+        </li>
+        <p class="commands-show-content" id="chmod-content">
+          <b> chmod</b> - Schimba modul unui fisier
+        </p>
+        <li>
+          <a href="javascript:;" id="chown" onclick="chownClick();">chown</a>
+        </li>
+        <p class="commands-show-content" id="chown-content">
+          <b> chown</b> - Schimba proprietarul unui fisier
+        </p>
+        <li>
+          <a href="javascript:;" id="df" onclick="dfClick();">df</a>
+        </li>
+        <p class="commands-show-content" id="df-content">
+          <b> df</b> - Afiseaza spatiul liber
+        </p>
+        <li>
+          <a href="javascript:;" id="grep" onclick="grepClick();">grep</a>
+        </li>
+        <p class="commands-show-content" id="grep-content">
+          <b>grep</b> - Afiseaza o linie care intruneste o calitate
+        </p>
+        <li>
+          <a href="javascript:;" id="gzip" onclick="gzipClick();">gzip</a>
+        </li>
+        <p class="commands-show-content" id="gzip-content">
+          <b>gzip</b> - Arhivator gzip
+        </p>
+        <li>
+          <a href="javascript:;" id="gunzip" onclick="gunzipClick();">gunzip</a>
+        </li>
+        <p class="commands-show-content" id="gunzip-content">
+          <b> gunzip</b> - Dezarhivator gzip
+        </p>
+        <li>
+          <a href="javascript:;" id="hostname" onclick="hostnameClick();"
+            >hostname</a
+          >
+        </li>
+        <p class="commands-show-content" id="hostname-content">
+          <b>hostname</b> - Afiseaza sau schimba hostname-ul sistemului
+        </p>
+        <li>
+          <a href="javascript:;" id="kill" onclick="killClick();">kill</a>
+        </li>
+        <p class="commands-show-content" id="kill-content">
+          <b>kill</b> - Omoara procesele
+        </p>
+        <li>
+          <a href="javascript:;" id="mount" onclick="mountClick();">mount</a>
+        </li>
+        <p class="commands-show-content" id="mount-content">
+          <b> mount</b> - Monteaza un device
+        </p>
+        <li>
+          <a href="javascript:;" id="ps" onclick="psClick();">ps</a>
+        </li>
+        <p class="commands-show-content" id="ps-content">
+          <b>ps</b> - Raporteaza statutul proceselor
+        </p>
+        <li>
+          <a href="javascript:;" id="uname" onclick="unameClick();">uname</a>
+        </li>
+        <p class="commands-show-content" id="uname-content">
+          <b> uname</b> - Afiseaza informatii despre sistem
+        </p>
+        <li>
+          <a href="javascript:;" id="whatis" onclick="whatisClick();">whatis</a>
+        </li>
+        <p class="commands-show-content" id="whatis-content">
+          <b>whatis nume_comandă</b> - listează informaţii despre rolul unei
+          comenzi
+          <br />
+          <b>$ whatis whatis</b>
+          <br />
+          whatis (1) - search the whatis database for complete words
+          <br />
+          <b>$ whatis mkdir</b>
+          <br />
+          mkdir (2) - create a directory
+        </p>
+        <li>
+          <a href="javascript:;" id="info" onclick="infoClick();">info</a>
+        </li>
+        <p class="commands-show-content" id="info-content">
+          <b>info nume_comandă</b> - afisează o pagină informativă despre
+          comanda primită ca parametru; navigarea se face cu săgeţile sus/jos şi
+          pageup/pagedown
+        </p>
+        <li>
+          <a href="javascript:;" id="man" onclick="manClick();">man</a>
+        </li>
+        <p class="commands-show-content" id="man-content">
+          <b>man nume_comandă</b> - listează manualul pentru comanda primită ca
+          parametru; navigarea se face cu săgeţile sus/jos şi pageup/pagedown
+          (space şi enter echivalează cu pagedown şi respectiv one line down)
+        </p>
+      </ul>
+    </div>
+
+    <!--Noutăți-->
+
+    <div class="element" style="margin-bottom: 50px">
+      <div class="subtitle">
+        <h1 class="title-gradient3">&#10094;&nbsp;Noutăți&nbsp;&#10095;</h1>
+      </div>
+    </div>
+
+    <div class="container-news-main">
+      <div class="container-news">
+        <a href="https://distrowatch.com/11503" target="_blank">
+          <img src="img/ubuntu_mate.jpg" alt="Notebook" style="width: 100%" />
+          <div class="container-news-content">
+            <h1>Development Release: Ubuntu MATE 22.04 Beta</h1>
+            <p>
+              <br />
+              Comunitatea Ubuntu a publicat o nouă versiune de dezvoltare, care
+              duce la suportul pe termen lung (LTS) al distribuției 22.04
+              programat pentru aprilie.
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="container-news">
+        <a href="https://distrowatch.com/11494" target="_blank">
+          <img src="img/linux_mint.png" alt="Notebook" style="width: 100%" />
+          <div class="container-news-content">
+            <h1>Distribution Release: Linux Mint 5 "LMDE"</h1>
+            <p>
+              <br />
+              Clement Lefebvre a anunțat lansarea unei noi versiuni a ediției
+              Debian a Linux Mint, mai cunoscută ca LMDE.
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="container-news">
+        <a href="https://distrowatch.com/10504" target="_blank">
+          <img src="img/ubuntu.png" alt="Notebook" style="width: 100%" />
+          <div class="container-news-content">
+            <h1>Development Release: Ubuntu 19.04 Beta</h1>
+            <p>
+              <br />
+              Adam Conrad a anunțat disponibilitatea beta inițială Ubuntu 19.04
+              „Disco Dingo”, viitoarea versiune a produsului emblematic al
+              proiectului.
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="container-news">
+        <a href="https://distrowatch.com/10851" target="_blank">
+          <img src="img/fedora.jpg" alt="Notebook" style="width: 100%" />
+          <div class="container-news-content">
+            <h1>Development Release: Fedora 32 Beta</h1>
+            <p>
+              <br />
+              Mohan Boddu a anunțat lansarea unei noi dezvoltări pentru
+              distribușia Fedora. <br />
+              Noua versiune de dezvoltare a proiectului, Fedora 32 Beta, include
+              EarlyOOM.
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="container-news">
+        <a href="https://distrowatch.com/11504" target="_blank">
+          <img src="img/deepin.jpg" alt="Notebook" style="width: 100%" />
+          <div class="container-news-content">
+            <h1>Distribution Release: deepin 20.5</h1>
+            <p>
+              <br />
+              Deepin este o distribuție desktop bazată pe Deban, cu mediul
+              desktop Deepin (DDE). <br />Cea mai recentă versiune a proiectului
+              introduce cereri de asistență către centrul de software.
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="container-news">
+        <a href="https://distrowatch.com/11474" target="_blank">
+          <img src="img/kali-linux.jpg" alt="Notebook" style="width: 100%" />
+          <div class="container-news-content">
+            <h1>Distribution Release: Kali Linux 2022.1</h1>
+            <p>
+              <br />
+              Acest proiect Kali Linux este o distribuție bazată pe Debian, cu o
+              colecție de instrumente de securitate și criminalistică. Această
+              versiune aduce diverse actualizări vizuale și modificări ale
+              funcțiilor existente.
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!--Top distribuții-->
+
+    <div class="element" style="margin-bottom: 50px">
+      <div class="subtitle">
+        <h1 class="title-gradient4">
+          &#10094;&nbsp;Top 5 distribuții Linux&nbsp;&#10095;
+        </h1>
+      </div>
+    </div>
+
+    <div class="distributii-container">
+      <div class="distributii-categories">
+        <ul id="distributii-commands-ul">
+          <li>
+            <a href="javascript:;" onclick="onClickArchLinux();"
+              >5. Arch Linux</a
+            >
+          </li>
+          <li>
+            <a href="javascript:;" onclick="onClickUbuntuLinux();"
+              >4. Ubuntu Linux</a
+            >
+          </li>
+          <li>
+            <a href="javascript:;" onclick="onClickMXLinux();">3. MX Linux</a>
+          </li>
+          <li>
+            <a href="javascript:;" onclick="onClickManjaroLinux();"
+              >2. Manjaro Linux</a
+            >
+          </li>
+          <li>
+            <a href="javascript:;" onclick="onClickLinuxMint();"
+              >1. Linux Mint</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!--Top 5 distributii Linux-->
+
+      <div class="distributii-container-content">
+        <a href="https://linuxmint.com/" id="distributii-link" target="_blank">
+          <img
+            src="img/linux_mint.png"
+            alt="Notebook"
+            style="width: 100%"
+            id="distributii-imagine"
+          />
+          <div class="distributii-content">
+            <h1 id="distributii-titlu">Linux Mint</h1>
+            <p id="distributii-text">
+              Linux Mint este o distribuție bazată pe Ubuntu și este ideala
+              pentru orice laptop sau sistem desktop. Oferă combinația perfectă
+              între o interfață grafică foarte atractivă și funcționalitate de
+              top. Este foarte similar cu Windows din punct de vedere estetic și
+              veți găsi cam orice tip de aplicație, indiferent dacă vorbim
+              despre productivitate sau home-use.
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!--Footer-->
+
+    <footer>
+      <div class="footer-content">
+        <h3><b>LINUX</b></h3>
+        <h4>PROIECT PROGRAMARE WEB</h4>
+        <p>Student: Epure Alexandru-Cristian, TI, III, Grupa 4LF391A<br /></p>
+        <div class="footer-links">
+          <a href="index">Acasă</a>
+          <a href="distributii">Distribuții Linux</a>
+          <a href="istoria">Istoria Linux</a>
+          <a href="chat-login">Conversație live</a>
+          <a href="despre">Despre</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="text/javascript" src="js/terminal-data.js"></script>
+    <script type="text/javascript" src="js/terminal.js"></script>
+    <script type="text/javascript" src="js/commands.js"></script>
+    <script type="text/javascript" src="js/distributii.js"></script>
+
+    <!--Script pentru căutare comenzi-->
+
+    <script>
+      function searchCommands() {
+        document.getElementById("mkdir-content").style.display = "none";
+        document.getElementById("mv-content").style.display = "none";
+        document.getElementById("cp-content").style.display = "none";
+        document.getElementById("cat-content").style.display = "none";
+        document.getElementById("ls-content").style.display = "none";
+        document.getElementById("cd-content").style.display = "none";
+        document.getElementById("pwd-content").style.display = "none";
+        document.getElementById("rm-content").style.display = "none";
+        document.getElementById("rmdir-content").style.display = "none";
+        document.getElementById("touch-content").style.display = "none";
+        document.getElementById("dir-content").style.display = "none";
+        document.getElementById("echo-content").style.display = "none";
+        document.getElementById("chmod-content").style.display = "none";
+        document.getElementById("chown-content").style.display = "none";
+        document.getElementById("df-content").style.display = "none";
+        document.getElementById("grep-content").style.display = "none";
+        document.getElementById("gzip-content").style.display = "none";
+        document.getElementById("gunzip-content").style.display = "none";
+        document.getElementById("hostname-content").style.display = "none";
+        document.getElementById("kill-content").style.display = "none";
+        document.getElementById("mount-content").style.display = "none";
+        document.getElementById("ps-content").style.display = "none";
+        document.getElementById("uname-content").style.display = "none";
+        document.getElementById("whatis-content").style.display = "none";
+        document.getElementById("info-content").style.display = "none";
+        document.getElementById("man-content").style.display = "none";
+
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("input-search-commands");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("search-commands-ul");
+        li = ul.getElementsByTagName("li");
+
+        for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("a")[0];
+          txtValue = a.textContent || a.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

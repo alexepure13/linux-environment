@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/slider.css" />
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/login_style_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar_centered_name.css}">
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+            rel="stylesheet"
+    />
+    <title>User Edit Form</title>
+</head>
+<body>
+<!--Editare utilizator-->
+
+<div class="container" style="position:absolute; left:0; right:0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
+    <div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center">
+        <div class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg" style="border-radius: 5px;">
+            <div class="p-5">
+                <div class="text-center">
+                    <h4 class="text-dark mb-4">Editează contul!</h4>
+                </div>
+                <form class="user" th:action="@{/editUser}" th:object="${user}">
+                    <div class="mb-3"><input class="form-control form-control-user" type="text" placeholder="Username" th:field="*{id}" hidden></div>
+                    <div class="mb-3"><input class="form-control form-control-user" type="text" placeholder="Username" th:field="*{username}" required=""></div>
+                    <div class="mb-3"><input class="form-control form-control-user" type="email" id="email" placeholder="Email Address" th:field="*{email}" required=""></div>
+                    <div class="row mb-3">
+                        <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="password" th:field="*{password}" placeholder="Password" required=""></div>
+                        <div class="col-sm-6"><input class="form-control form-control-user" type="password" id="verifyPassword" placeholder="Repeat Password" required=""></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" placeholder="First Name" th:field="*{firstName}" required=""></div>
+                        <div class="col-sm-6"><input class="form-control form-control-user" type="text" placeholder="Last Name" th:field="*{lastName}" required=""></div>
+                    </div>
+                    <div class="row mb-3" hidden>
+                        <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" placeholder="active" th:field="*{active}" required="" hidden></div>
+                    </div>
+                    <div class="row mb-3" style="margin: 0 1px;">
+                        <select class="selectpicker form-control" id="idRoles"
+                                th:field="${user.role.id}">
+                            <option  value="2"
+                                     th:text="${roleList.get(0).name}"></option>
+                            <option  value="1"
+                                     th:text="${roleList.get(1).name}"></option>
+                        </select>
+
+                    </div>
+                    <div class="row mb-3">
+                        <p id="emailErrorMsg" class="text-danger" style="display:none;">Paragraph</p>
+                        <p id="passwordErrorMsg" class="text-danger" style="display:none;">Paragraph</p>
+                    </div>
+
+                    <button class="btn btn-primary d-block btn-user w-100" id="submitBtn" type="submit">Editează contul</button>
+                    <hr>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

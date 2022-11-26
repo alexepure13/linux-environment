@@ -1,0 +1,114 @@
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(6, 0, 115);
+    background: linear-gradient(90deg, rgba(6, 0, 115, 1) 0%, rgba(42, 70, 121, 1) 0%, rgba(93, 137, 217, 1) 100%);
+
+}
+a, button {
+    outline: none;
+}
+
+a {
+    color: #566473;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #34495e;
+}
+
+section {
+    padding: 1em;
+    text-align: center;
+}
+
+.logo_box {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 500px;
+    height: 500px;
+    padding: 35px;
+    color: #EEE;
+    left: 50%;
+    top: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.logo_box h3 {
+    text-align: center;
+    height: 20px;
+    color: #FFFFFF;
+    line-height: 20px;
+    padding: 0 0 35px 0;
+}
+
+.input_outer {
+    height: 46px;
+    padding: 0 5px;
+    margin-bottom: 30px;
+    border-radius: 50px;
+    border: rgba(255, 255, 255, 0.2) 2px solid !important;
+}
+
+.u_user {
+    text-align: center;
+}
+
+.us_uer {
+    width: 25px;
+    height: 25px;
+}
+
+.text {
+    width: 220px;
+    height: 46px;
+    outline: none;
+    display: inline-block;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    background: none;
+    text-align: center;
+    line-height: 46px;
+}
+
+.mb2 {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.mb2 a {
+    text-decoration: none;
+    outline: none;
+}
+
+.submit {
+    padding: 15px;
+    margin-top: 20px;
+    display: block;
+    color: #FFFFFF
+}
+
+.act-but {
+    line-height: 20px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 50px;
+    background: #0096e6;
+}
+
+#username {
+    color: #FFFFFF !important
+}
+
+#password {
+    color: #FFFFFF !important;
+    position: absolute;
+    z-index: 100;
+}
